@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  frontend_app:
+    image: frontend
+    container_name: frontend_container
+    env_file:
+      - ./frontend/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend_app
+
+  backend_app:
+    image: backend
+    container_name: backend_container
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8002:8002"
+    depends_on:
+      - mongo_app
+
+  mongo_app:
+    image: mongo
+    container_name: mongo_container
+    ports:
+      - "27017:27017"
