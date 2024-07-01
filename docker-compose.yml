@@ -1,0 +1,18 @@
+version: "3.8"  # Adjust version if needed
+
+services:
+  my_service:
+    image: testvolume
+    ports:
+      - "8002:8002"  # Map container port 3000 to host port 3000
+    volumes:
+      - ./:/app  # Mount current directory (including .env) to /app in container
+    environment:
+      - JWT_SECRET  # Reference environment variable from .env without value here
+      - DATABASE_URL
+      - PORT
+
+
+
+
+# for direct run --- docker run -v hello:/app --env-file ./.env -p 8002:8002  testvolume
